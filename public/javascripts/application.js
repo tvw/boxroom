@@ -71,7 +71,7 @@ function UncheckCreateUpdateDelete(checked, group)
     }
 }
 
-// By using this function onclick of the Create, Update and Delete checkbox,
+// By using this function onclick of the Create, Update and Delete checkbox,
 // you make sure that if Create, Update and Delete is allowed, Reading is allowed too.
 function CheckRead(checked, group)
 {
@@ -103,7 +103,7 @@ var UploadProgress = {
     var statusHTML = status.toPercentage();
     $('results').innerHTML   = statusHTML + "<br /><small>" + current.toHumanSize() + ' of ' + total.toHumanSize() + " uploaded.</small>";
     this.StatusBar.update(status, statusHTML);
-  },
+  },
   
   finish: function(return_url) {
     this.uploading = false;
