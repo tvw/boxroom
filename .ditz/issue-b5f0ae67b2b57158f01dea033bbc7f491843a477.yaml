@@ -1,0 +1,18 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: Remove deprecated "session off" in file- and folder-controller
+desc: ""
+type: :bugfix
+component: boxroom
+release: 
+reporter: Thomas Volkmar Worm <tvw@s4r.de>
+status: :unstarted
+disposition: 
+creation_time: 2009-10-02 22:53:21.126244 Z
+references: []
+
+id: b5f0ae67b2b57158f01dea033bbc7f491843a477
+log_events: 
+- - 2009-10-02 22:53:36.018600 Z
+  - Thomas Volkmar Worm <tvw@s4r.de>
+  - created
+  - ""
