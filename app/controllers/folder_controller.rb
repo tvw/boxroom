@@ -25,7 +25,7 @@ class FolderController < ApplicationController
   # The default action, redirects to list.
   def index
     list
-    render_action 'list'
+    render :action => 'list'
   end
 
   # List the files and sub-folders in a folder.
@@ -119,7 +119,7 @@ class FolderController < ApplicationController
         # back to the list
         redirect_to :action => 'list', :id => params[:id]
       else
-        render_action 'new'
+        render :action => 'new'
       end
     end
   end
@@ -135,7 +135,7 @@ class FolderController < ApplicationController
       if @folder.update_attributes(:name => params[:folder][:name], :date_modified => Time.now)
         redirect_to :action => 'list', :id => folder_id
       else
-        render_action 'rename'
+        render :action => 'rename'
       end
     end
   end

@@ -101,7 +101,7 @@ class FileController < ApplicationController
       if @myfile.update_attributes(:filename => Myfile.base_part_of(params[:myfile][:filename]), :date_modified => Time.now)
         redirect_to :controller => 'folder', :action => 'list', :id => folder_id
       else
-        render_action 'rename'
+        render :action => 'rename'
       end
     end
   end
