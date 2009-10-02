@@ -26,3 +26,19 @@ config.action_view.cache_template_loading            = true
 
 # Enable threaded mode
 # config.threadsafe!
+
+
+# ActionMailer config:
+ActionMailer::Base.delivery_method = :smtp
+
+ActionMailer::Base.smtp_settings = {
+  :address => 'bogus',
+  :port => 25,
+  :domain => 'bogus'
+}
+
+# Path where the files will be stored
+UPLOAD_PATH = "#{RAILS_ROOT}/uploads"
+
+# Use upload progress (or not)
+USE_UPLOAD_PROGRESS = false

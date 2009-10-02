@@ -26,3 +26,19 @@ config.action_mailer.delivery_method = :test
 # This is necessary if your schema can't be completely dumped by the schema dumper,
 # like if you have constraints or database-specific column types
 # config.active_record.schema_format = :sql
+
+
+# ActionMailer config:
+ActionMailer::Base.delivery_method = :smtp
+
+ActionMailer::Base.smtp_settings = {
+  :address => 'bogus',
+  :port => 25,
+  :domain => 'bogus'
+}
+
+# Path where the files will be stored
+UPLOAD_PATH = "#{RAILS_ROOT}/uploads"
+
+# Use upload progress (or not)
+USE_UPLOAD_PROGRESS = false

@@ -15,3 +15,19 @@ config.action_controller.perform_caching             = false
 
 # Don't care if the mailer can't send
 config.action_mailer.raise_delivery_errors = false
+
+
+# ActionMailer config:
+ActionMailer::Base.delivery_method = :smtp
+
+ActionMailer::Base.smtp_settings = {
+  :address => 'bogus',
+  :port => 25,
+  :domain => 'bogus'
+}
+
+# Path where the files will be stored
+UPLOAD_PATH = "#{RAILS_ROOT}/uploads"
+
+# Use upload progress (or not)
+USE_UPLOAD_PROGRESS = false

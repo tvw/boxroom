@@ -3,5 +3,9 @@ tmp/*
 db/*.sqlite3
 db/data.yml
 files/*
+index/
+!index/.gitignore
+uploads/
+!uploads/.gitignore
 .DS_Store
-boxroom
+boxroom/
