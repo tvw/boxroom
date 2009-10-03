@@ -1,0 +1,18 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: Change views to Haml/Sass
+desc: ""
+type: :feature
+component: boxroom
+release: 
+reporter: Thomas Volkmar Worm <tvw@s4r.de>
+status: :unstarted
+disposition: 
+creation_time: 2009-10-02 23:15:08.560443 Z
+references: []
+
+id: b8f669ff5ea84f20d39e025d25d02a9831d34a50
+log_events: 
+- - 2009-10-02 23:15:10.914910 Z
+  - Thomas Volkmar Worm <tvw@s4r.de>
+  - created
+  - ""

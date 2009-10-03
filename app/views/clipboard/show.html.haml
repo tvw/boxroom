@@ -1,0 +1,8 @@
+- @clipboard.folders.each do |folder|
+  = h(folder.name)
+  %br
+
+%br
+- @clipboard.files.each do |file|
+  = h(file.filename)
+  %br

@@ -1,0 +1,30 @@
+%p.title
+  Upload file
+  %img#spinner{ :src => "/images/spinner_mac.gif", :alt => "spinner", :style => "display:none;" }
+
+#error{ :style => "display:none;" }
+- @upid = Time.now.to_i.to_s
+- form_tag({:action => 'do_the_upload', :upload_id => @upid, :folder_id => controller.folder_id}, {:multipart => true, :target => 'upload', :onsubmit => "UploadProgress.monitor('#{escape_javascript @upid}')"}) do
+  %p
+    = file_field 'myfile', 'myfile', :onchange => "checkFile();"
+  %p
+    = submit_tag :Upload, :id => 'submit_upload', :disabled => true
+
+
+#results
+#progress-bar
+  %span#initial-status
+    0%
+= link_to 'Back', :controller => 'folder', :action => 'list', :id => controller.folder_id
+%script{ :type => "text/javascript" }
+  function checkFile()
+  {
+  new Ajax.Updater('error',
+  '/file/validate_filename/<haml:loud> controller.folder_id </haml:loud>',
+  { asynchronous:true,
+  evalScripts:true,
+  onLoading:function(request){Element.show('spinner');},
+  parameters:document.getElementById('myfile_myfile').value }
+  );
+  }
+%iframe#upload{ :name => "upload", :src => "about:blank", :style => "width:0px;height:0px;border-style:none;background-color:#FFF;" }

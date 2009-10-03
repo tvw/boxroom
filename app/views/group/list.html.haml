@@ -1,0 +1,28 @@
+%p.title
+  Groups
+
+- if flash[:group_error]
+  #error
+    = flash[:group_error]
+
+%table
+  %tr
+    %th
+    %th{ :width => "542" }
+      Name
+    %th
+    %th
+  - @groups.each do |group|
+    %tr{ :class => cycle('even', 'odd') }
+      %td
+        = image_tag('group.png')
+      %td
+        = h(group.name)
+      - unless group.is_the_administrators_group?
+        %td
+          = link_to image_tag('edit.png'), { :action => 'rename', :id => group }, { :title => 'Rename this group' }
+        %td
+          = link_to image_tag('delete.png'), { :action => 'destroy', :id => group }, { :title => 'Delete this group', :confirm => 'Are you sure?' }
+      - else
+        %td
+        %td

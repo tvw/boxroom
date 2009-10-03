@@ -85,8 +85,11 @@ class FolderController < ApplicationController
     end
 
     # finally, set correct header
+    # TVW: ???
     if @authorized
-      headers['Content-Type'] = 'text/xml'
+      respond_to do |format|
+        format.xml
+      end
     else
       headers['Content-Type'] = 'text/html'
     end

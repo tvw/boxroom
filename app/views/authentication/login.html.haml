@@ -1,0 +1,23 @@
+%p.title
+  Login
+- if flash[:login_error]
+  #error
+    = flash[:login_error]
+- if flash[:login_confirmation]
+  #confirmation
+    = flash[:login_confirmation]
+
+- form_tag do
+  Username:
+  %br
+  = text_field 'user', 'name', :style => 'width:220px;'
+  %br
+  %br
+  Password:
+  %br
+  = password_field 'login', 'password', :style => 'width:220px;'
+  %br
+  %br
+  = submit_tag 'Login'
+
+= link_to 'I forgot my password', :action => 'forgot_password'

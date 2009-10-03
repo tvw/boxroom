@@ -1,0 +1,12 @@
+%p
+  = error_messages_for 'folder'
+/
+  [form:folder]
+%label{ :for => "folder_name" }
+  Name:
+%br
+= text_field 'folder', 'name'
+%br
+%br
+/
+  [eoform:folder]

@@ -1,0 +1,130 @@
+%p.title
+  = path(@folder, false)
+  \&nbsp;
+
+  - if @logged_in_user.is_admin?
+    %a#rights_link.small{ :href => "#", :onclick => "ShowProperties();" }
+      permissions
+    %a#list_link.small{ :href => "#", :onclick => "ShowList();", :style => "display:none;" }
+      back to folder
+
+  = link_to 'RSS', { :controller => 'folder', :action => 'feed', :id => controller.folder_id, :access_key => @logged_in_user.rss_access_key }, { :class => 'small' }
+  = link_to '(!)', { :controller => 'folder', :action => 'feed_warning' }, { :class => 'small', :style => 'margin-left:1px;' }
+
+#list{ :style => "position:relative;" }
+  %div
+    - if flash[:folder_error]
+      #error
+        = flash[:folder_error]
+
+    %table.grid
+      %tr
+        %th
+        %th{ :width => "239" }
+          = link_order 'Name', 'name'
+        %th{ :width => "82" }
+          = link_order 'Size', 'filesize'
+        %th
+          = link_order 'Date Modified', 'date_modified'
+        %th
+        %th
+        %th
+      - if @folder_up
+        %tr{ :class => cycle('even', 'odd') }
+          %td
+            = image_tag('folder.png')
+          %td
+            = @folder_up
+          %td
+            \--
+          %td
+            \--
+          %td
+          %td
+          %td
+
+      - @folders.each do |folder|
+        %tr{ :class => cycle('even', 'odd') }
+          %td
+            = image_tag('folder.png')
+          %td
+            = link_to h(folder.name), :action => 'list', :id => folder
+          %td
+            \--
+          %td
+            = folder.date_modified
+          %td
+            - if @can_update
+              = link_to image_tag('edit.png'), { :action => 'rename', :id => folder}, { :title => 'Rename this folder' }
+          %td
+            - if @can_delete
+              = link_to image_tag('delete.png'), {:action => 'destroy', :id => folder}, { :title => 'Delete this folder', :confirm => "All files and subfolders will be deleted!\nAre you sure?" }
+          %td
+
+      - @myfiles.each do |myfile|
+        %tr{ :class => cycle('even', 'odd') }
+          %td
+            = image_tag('file.png')
+          %td
+            = link_to h(myfile.filename), :controller => 'file', :action => 'download', :id => myfile
+          %td
+            = myfile.filesize
+            KB
+          %td
+            = myfile.date_modified
+          %td
+            - if @can_update
+              = link_to image_tag('edit.png'), { :controller => 'file', :action => 'rename', :id => myfile }, { :title => 'Rename this file' }
+          %td
+            - if @can_delete
+              = link_to image_tag('delete.png'), { :controller => 'file', :action => 'destroy', :id => myfile }, { :title => 'Delete this file', :confirm => 'Are you sure?' }
+          %td
+            - if myfile.indexed
+              = link_to image_tag('zoom.png'), { :controller => 'file', :action => 'preview', :id => myfile }, { :title => 'Preview', :class => 'noBackground' }
+
+- reset_cycle
+- if @logged_in_user.is_admin?
+  #folder_rights{ :style => "display:none;position:relative;" }
+    %div
+      - form_tag :action => 'update_permissions', :id => params[:id] do
+        %table
+          %tr
+            %th
+            %th
+            %th.rights
+              Create
+            %th.rights
+              Read
+            %th.rights
+              Update
+            %th.rights
+              Delete
+          - Group.find(:all, :order => 'name').each do |group|
+            %tr{ :class => cycle('even', 'odd') }
+              - disabled = group.is_the_administrators_group?
+              - if disabled
+                %td
+                  = image_tag('group_grey.png')
+                %td{ :style => "color:#818181;" }
+                  = h(group.name)
+              - else
+                %td
+                  = image_tag('group.png')
+                %td
+                  = h(group.name)
+
+              %td.rights
+                = CRUD_check_box('create', group.id, controller.folder_id, disabled)
+              %td.rights
+                = CRUD_check_box('read', group.id, controller.folder_id, disabled)
+              %td.rights
+                = CRUD_check_box('update', group.id, controller.folder_id, disabled)
+              %td.rights
+                = CRUD_check_box('delete', group.id, controller.folder_id, disabled)
+
+        %br
+        = submit_tag 'Save'
+        = check_box('update_recursively', 'checked', {}, 'yes', 'no')
+        Apply changes to subfolders
+
+

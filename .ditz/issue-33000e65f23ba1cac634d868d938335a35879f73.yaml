@@ -1,0 +1,18 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: Moving files and folders
+desc: Let the user move files and folders.
+type: :feature
+component: boxroom
+release: 
+reporter: Thomas Volkmar Worm <tvw@s4r.de>
+status: :unstarted
+disposition: 
+creation_time: 2009-10-03 19:12:53.496089 Z
+references: []
+
+id: 33000e65f23ba1cac634d868d938335a35879f73
+log_events: 
+- - 2009-10-03 19:12:55.556743 Z
+  - Thomas Volkmar Worm <tvw@s4r.de>
+  - created
+  - ""
