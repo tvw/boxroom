@@ -1,0 +1,18 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: Logging and showing what is happening with files.
+desc: If someone deletes, moves or ... files, this should be tracked and viewable by the users
+type: :feature
+component: boxroom
+release: 
+reporter: Thomas Volkmar Worm <tvw@s4r.de>
+status: :unstarted
+disposition: 
+creation_time: 2009-10-07 16:19:37.774856 Z
+references: []
+
+id: 255e6e72d448bec59a4c29fcd1988a4141d87b81
+log_events: 
+- - 2009-10-07 16:19:38.516328 Z
+  - Thomas Volkmar Worm <tvw@s4r.de>
+  - created
+  - ""
