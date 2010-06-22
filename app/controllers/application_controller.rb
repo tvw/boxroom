@@ -1,5 +1,8 @@
 # Application-wide functionality used by controllers.
 class ApplicationController < ActionController::Base
+  helper :all # include all helpers, all the time
+  protect_from_forgery # See ActionController::RequestForgeryProtection for details
+
   before_filter :authorize # user should be logged in
 
   # Returns the id of the current folder, which is used by the
