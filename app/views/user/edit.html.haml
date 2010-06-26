@@ -1,8 +1,5 @@
 %p.title
   Edit user
-- if flash[:user_confirmation]
-  #confirmation
-    = flash[:user_confirmation]
 
 - form_tag :action => 'update', :id => @user do
   = render :partial=>'form'
@@ -11,3 +8,5 @@
 - if @user != @logged_in_user
   = link_to 'Back', :action => 'list'
 
+- content_for :actionlinks do
+  = render :partial => "actionlinks"

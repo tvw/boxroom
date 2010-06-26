@@ -9,3 +9,5 @@ uploads/
 !uploads/.gitignore
 .DS_Store
 boxroom/
+testfiles/
+public/stylesheets/boxroom.css

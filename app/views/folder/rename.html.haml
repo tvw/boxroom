@@ -6,3 +6,6 @@
   = submit_tag 'Rename'
 
 = link_to 'Back', :action => 'list', :id => controller.folder_id
+
+- content_for :actionlinks do
+  = render :partial => "actionlinks"

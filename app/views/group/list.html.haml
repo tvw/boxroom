@@ -1,10 +1,6 @@
 %p.title
   Groups
 
-- if flash[:group_error]
-  #error
-    = flash[:group_error]
-
 %table
   %tr
     %th
@@ -26,3 +22,6 @@
       - else
         %td
         %td
+
+- content_for :actionlinks do
+  = render :partial => "actionlinks"

@@ -12,3 +12,6 @@
   = submit_tag 'Create'
 
 = link_to 'Back', :action => 'list'
+
+- content_for :actionlinks do
+  = render :partial => "actionlinks"

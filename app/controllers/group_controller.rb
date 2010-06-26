@@ -106,7 +106,7 @@ class GroupController < ApplicationController
     def does_group_exist
       @group = Group.find(params[:id])
     rescue
-      flash.now[:group_error] = 'Someone else deleted the group. Your action was cancelled.'
+      flash.now[:error] = 'Someone else deleted the group. Your action was cancelled.'
       redirect_to :action => 'list' and return false
     end
 end

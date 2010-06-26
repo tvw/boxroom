@@ -1,12 +1,5 @@
 %p.title
   Users
-- if flash[:user_error]
-  #error
-    = flash[:user_error]
-
-- if flash[:user_confirmation]
-  #confirmation
-    = flash[:user_confirmation]
 
 %table
   %tr
@@ -33,4 +26,5 @@
         %td
           = link_to image_tag('delete.png'), { :action => 'destroy', :id => user }, { :title => 'Delete this user', :confirm => 'Are you sure?' }
 
-
+- content_for :actionlinks do
+  = render :partial => "actionlinks"

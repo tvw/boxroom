@@ -1,11 +1,5 @@
 %p.title
   Login
-- if flash[:login_error]
-  #error
-    = flash[:login_error]
-- if flash[:login_confirmation]
-  #confirmation
-    = flash[:login_confirmation]
 
 - form_tag do
   Username:

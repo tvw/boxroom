@@ -131,7 +131,7 @@ class FileController < ApplicationController
     def does_file_exist
       @myfile = Myfile.find(params[:id])
     rescue
-      flash.now[:folder_error] = 'Someone else deleted the file you are using. Your action was cancelled and you have been taken back to the root folder.'
+      flash.now[:error] = 'Someone else deleted the file you are using. Your action was cancelled and you have been taken back to the root folder.'
       redirect_to :controller => 'folder', :action => 'list' and return false
     end
 end

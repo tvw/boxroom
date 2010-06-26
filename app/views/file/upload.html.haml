@@ -16,7 +16,7 @@
   %span#initial-status
     0%
 = link_to 'Back', :controller => 'folder', :action => 'list', :id => controller.folder_id
-%script{ :type => "text/javascript" }
+:javascript
   function checkFile()
   {
   new Ajax.Updater('error',
@@ -28,3 +28,6 @@
   );
   }
 %iframe#upload{ :name => "upload", :src => "about:blank", :style => "width:0px;height:0px;border-style:none;background-color:#FFF;" }
+
+- content_for :actionlinks do
+  = render :partial => "actionlinks"

@@ -40,13 +40,13 @@ class UserController < ApplicationController
         begin
           # send an e-mail to the new user; informing him about his account
           PasswordMailer.deliver_new_user(@user.name, @user.email, params[:user][:password])
-          flash[:user_confirmation] = "The new user's account information has been e-mailed to " + @user.email
+          flash[:notice] = "The new user's account information has been e-mailed to " + @user.email
           redirect_to :action => 'list'
         rescue Exception => e
           if e.message.match('getaddrinfo: No address associated with nodename')
-            flash[:user_error] = 'The mail server settings in the environment file are incorrect. Check the installation instructions to solve this problem. The user was created nevertheless.'
+            flash[:error] = 'The mail server settings in the environment file are incorrect. Check the installation instructions to solve this problem. The user was created nevertheless.'
           else
-            flash[:user_error] = e.message + ".<br /><br />This means either the user's e-mail address or Boxroom's configuration for e-mailing is invalid. Please contact the administrator or check the installation instructions. The user was created nevertheless."
+            flash[:error] = e.message + ".<br /><br />This means either the user's e-mail address or Boxroom's configuration for e-mailing is invalid. Please contact the administrator or check the installation instructions. The user was created nevertheless."
           end
           redirect_to :action => 'list'
         end
@@ -71,7 +71,7 @@ class UserController < ApplicationController
         # If a user edited his/her own settings: show a confirmation in the edit screen
         # else: redirect to the list of users
         if @user == @logged_in_user
-          flash[:user_confirmation] = 'You saved your settings successfully'
+          flash[:notice] = 'You saved your settings successfully'
           redirect_to :action => 'edit', :id => params[:id]
         else
           redirect_to :action => 'list'
@@ -132,7 +132,7 @@ class UserController < ApplicationController
         @user = @logged_in_user
       end
     rescue
-      flash.now[:user_error] = 'Someone else deleted the user. Your action was cancelled.'
+      flash.now[:error] = 'Someone else deleted the user. Your action was cancelled.'
       redirect_to :action => 'list' and return false
     end
 end

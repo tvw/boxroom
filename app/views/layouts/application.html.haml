@@ -1,0 +1,43 @@
+%html
+  %head
+    %title
+      Boxroom
+    - if controller.controller_path == 'folder'
+      = auto_discovery_link_tag(:rss, { :controller => 'folder', :action => 'feed', :id => controller.folder_id, :access_key => @logged_in_user.rss_access_key })
+    = stylesheet_link_tag 'boxroom'
+    = javascript_include_tag :defaults
+    :javascript
+      if(IE)
+      {
+      window.onload = ResizeContentDiv;
+      window.onresize = ResizeContentDiv;
+      }
+  %body
+    #top
+      .header
+        - unless controller.controller_path == 'authentication'
+          .userSettings
+            = render :partial=>'shared/logged_in_user_menu'
+          .search
+            = render :partial=>'shared/search_form'
+      .topNavigation
+        - unless controller.controller_path == 'authentication'
+          .links
+            = render :partial=>'shared/go_to_menu'
+    #middle
+      .actionLinks
+        = yield :actionlinks  unless controller.controller_path == 'authentication'
+
+      .content
+        - flash.each do |type, message|
+          %div.flash{:class => type.to_s}
+            %p= message
+          - flash.discard(type)
+        = yield
+
+    #bottom
+      .footer
+        ©
+        = Time.now.year
+        %a{ :href => "http://boxroom.rubyforge.org" }
+          Mischa Berger / Thomas Volkmar Worm

@@ -13,10 +13,6 @@
 
 #list{ :style => "position:relative;" }
   %div
-    - if flash[:folder_error]
-      #error
-        = flash[:folder_error]
-
     %table.grid
       %tr
         %th
@@ -127,4 +123,5 @@
         = check_box('update_recursively', 'checked', {}, 'yes', 'no')
         Apply changes to subfolders
 
-
+- content_for :actionlinks do
+  = render :partial => "actionlinks"

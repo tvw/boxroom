@@ -20,7 +20,6 @@ class FolderController < ApplicationController
 
   # Sessions are not needed for feeds
   session :off, :only => 'feed'
-  layout 'folder', :except => 'feed'
 
   # The default action, redirects to list.
   def index
@@ -230,7 +229,7 @@ class FolderController < ApplicationController
       # First check if the folder exists, if it doesn't: show an appropriate message.
       # If the folder does exist, only authorize the read-rights if it's not the Root folder.
       unless Folder.find_by_id(folder_id)
-        flash.now[:folder_error] = 'Someone else deleted the folder you are using. Your action was cancelled and you have been taken back to the root folder.'
+        flash.now[:error] = 'Someone else deleted the folder you are using. Your action was cancelled and you have been taken back to the root folder.'
         redirect_to(:controller => 'folder', :action => 'list', :id => nil) and return false
       else
         super unless folder_id == 1
@@ -242,7 +241,7 @@ class FolderController < ApplicationController
     def authorize_deleting
       folder = Folder.find_by_id(folder_id)
       unless @logged_in_user.can_delete(folder.id)
-        flash.now[:folder_error] = "You don't have delete permissions for this folder."
+        flash.now[:error] = "You don't have delete permissions for this folder."
         redirect_to :controller => 'folder', :action => 'list', :id => folder_id and return false
       else
         authorize_deleting_for_children(folder)
@@ -255,9 +254,9 @@ class FolderController < ApplicationController
         unless @logged_in_user.can_delete(child_folder.id)
           error_msg = "Sorry, you don't have delete permissions for one of the subfolders."
           if child_folder.parent.id == folder_id
-            flash.now[:folder_error] = error_msg
+            flash.now[:error] = error_msg
           else
-            flash[:folder_error] = error_msg
+            flash[:error] = error_msg
           end
           redirect_to :controller => 'folder', :action => 'list', :id => folder_id and return false
         else

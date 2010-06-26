@@ -22,7 +22,7 @@ class AuthenticationController < ApplicationController
         session[:jumpto] = nil
         redirect_to(jumpto)
       else
-        flash.now[:login_error] = 'Invalid username/password combination'
+        flash.now[:error] = 'Invalid username/password combination'
       end
     end
   end
@@ -66,9 +66,9 @@ class AuthenticationController < ApplicationController
 
       # Act according to the result
       if result['flash'] == 'forgotten_notice'
-        flash.now[:forgotten_notice] = result['message']
+        flash.now[:warning] = result['message']
       else
-        flash[:login_confirmation] = result['message']
+        flash[:notice] = result['message']
         redirect_to(:action => 'login')
       end
     end

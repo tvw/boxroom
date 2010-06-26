@@ -20,3 +20,6 @@ in
 %br
 %a{ :href => "javascript:history.back(-1);" }
   Back
+
+- content_for :actionlinks do
+  = render :partial => "actionlinks"
