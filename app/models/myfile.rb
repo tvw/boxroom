@@ -1,3 +1,4 @@
+require 'fileutils'
 require 'zip/zipfilesystem'
 
 # Files in the database are represented by Myfile.
@@ -26,7 +27,7 @@ class Myfile < ActiveRecord::Base
   def myfile=(myfile_field)
     if myfile_field and myfile_field.length > 0
       # Get the filename
-      filename = Myfile.base_part_of(myfile_field.original_filename)
+      filename = Myfile.base_part_of(myfile_field['filename'])
 
       # Set date_time_created,
       # this will be the files temporary name.
@@ -34,11 +35,14 @@ class Myfile < ActiveRecord::Base
       @date_time_created = Time.now.to_f
 
       # Save the file on the file system
-      File.open(self.temp_path, 'wb') do |f|
-        while buff = myfile_field.read(4096)
-          f.write(buff)
-        end
+      begin
+        FileUtils.mv(myfile_field['path'], self.temp_path)
+        RAILS_DEFAULT_LOGGER.debug("moved '#{myfile_field['path']}' to '#{self.temp_path}'")
+      rescue
+        FileUtils.cp(myfile_field['path'], self.temp_path)
+        RAILS_DEFAULT_LOGGER.debug("copied '#{myfile_field['path']}' to '#{self.temp_path}'")
       end
+      FileUtils.chmod(0644, self.temp_path)
 
       # Variable to hold the plain text content of the uploaded file
       text_in_file = nil
@@ -94,7 +98,7 @@ class Myfile < ActiveRecord::Base
 
       # Save it all to the database
       self.filename = filename
-      filesize = (myfile_field.length / 1000).to_i
+      filesize = (File.size(self.temp_path) / 1000).to_i
       if filesize == 0
         self.filesize = 1 # a file of 0 KB doesn't make sense
       else
