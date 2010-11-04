@@ -1,0 +1,32 @@
+en:
+  folder:
+    list:
+      permissions: permissions
+      back_to_folder: back to folder
+
+      name: Name
+      size: Size
+      date_modified: Date Modified
+
+      rename_folder:
+        title: Rename this folder
+      delete_folder:
+        title: Delete this folder
+        confirm: "All files and subfolders will be deleted!\nAre you sure?"
+
+      rename_file:
+        title: Rename this file
+      delete_file:
+        title: Delete this file
+        confirm: "The file \"%{name}\" will be deleted!\nAre you sure?"
+      preview_file:
+        title: preview
+
+      permission:
+        create: Create
+        read: Read
+        update: Update
+        delete: Delete
+
+      save: Save
+      apply_changes_to_subfolders: Apply changes to subfolders

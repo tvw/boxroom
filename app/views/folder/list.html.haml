@@ -4,9 +4,10 @@
 
   - if @logged_in_user.is_admin?
     %a#rights_link.small{ :href => "#", :onclick => "ShowProperties();" }
-      permissions
+      = t('.permissions', :default => 'permissions')
     %a#list_link.small{ :href => "#", :onclick => "ShowList();", :style => "display:none;" }
-      back to folder
+      = t('.back_to_folder', :default => 'back to folder')
+    \&nbsp;
 
   = link_to 'RSS', { :controller => 'folder', :action => 'feed', :id => controller.folder_id, :access_key => @logged_in_user.rss_access_key }, { :class => 'small' }
   = link_to '(!)', { :controller => 'folder', :action => 'feed_warning' }, { :class => 'small', :style => 'margin-left:1px;' }
@@ -17,20 +18,20 @@
       %tr
         %th
         %th{ :width => "239" }
-          = link_order 'Name', 'name'
+          = link_order t(".name", :default => 'Name'), 'name'
         %th{ :width => "82" }
-          = link_order 'Size', 'filesize'
+          = link_order t(".size", :default => 'Size'), 'filesize'
         %th
-          = link_order 'Date Modified', 'date_modified'
+          = link_order t(".date_modified", :default => 'Date Modified'), 'date_modified'
         %th
         %th
         %th
-      - if @folder_up
+      - if @folder.parent
         %tr{ :class => cycle('even', 'odd') }
           %td
-            = image_tag('folder.png')
+            = link_to image_tag('folder.png'), :action => 'list', :id => @folder.parent
           %td
-            = @folder_up
+            = link_to "..", :action => 'list', :id => @folder.parent
           %td
             \--
           %td
@@ -42,41 +43,41 @@
       - @folders.each do |folder|
         %tr{ :class => cycle('even', 'odd') }
           %td
-            = image_tag('folder.png')
+            = link_to image_tag('folder.png'), :action => 'list', :id => folder
           %td
             = link_to h(folder.name), :action => 'list', :id => folder
           %td
             \--
           %td
-            = folder.date_modified
+            = l(folder.date_modified, :format => :timestamp)
           %td
             - if @can_update
-              = link_to image_tag('edit.png'), { :action => 'rename', :id => folder}, { :title => 'Rename this folder' }
+              = link_to image_tag('edit.png'), { :action => 'rename', :id => folder}, { :title => t('.rename_folder.title', :default => 'Rename this folder') }
           %td
             - if @can_delete
-              = link_to image_tag('delete.png'), {:action => 'destroy', :id => folder}, { :title => 'Delete this folder', :confirm => "All files and subfolders will be deleted!\nAre you sure?" }
+              = link_to image_tag('delete.png'), {:action => 'destroy', :id => folder}, { :title => t('.delete_folder.title', :default => 'Delete this folder'), :confirm => t('.delete_folder.confirm', :default=> "All files and subfolders will be deleted!\nAre you sure?") }
           %td
 
       - @myfiles.each do |myfile|
         %tr{ :class => cycle('even', 'odd') }
           %td
-            = image_tag('file.png')
+            = link_to image_tag('file.png'), :controller => 'file', :action => 'download', :id => myfile
           %td
             = link_to h(myfile.filename), :controller => 'file', :action => 'download', :id => myfile
           %td
             = myfile.filesize
             KB
           %td
-            = myfile.date_modified
+            = l(myfile.date_modified, :format => :timestamp)
           %td
             - if @can_update
-              = link_to image_tag('edit.png'), { :controller => 'file', :action => 'rename', :id => myfile }, { :title => 'Rename this file' }
+              = link_to image_tag('edit.png'), { :controller => 'file', :action => 'rename', :id => myfile }, { :title => t('.rename_file.title', :default => 'Rename this file') }
           %td
             - if @can_delete
-              = link_to image_tag('delete.png'), { :controller => 'file', :action => 'destroy', :id => myfile }, { :title => 'Delete this file', :confirm => 'Are you sure?' }
+              = link_to image_tag('delete.png'), { :controller => 'file', :action => 'destroy', :id => myfile }, { :title => t('.delete_file.title', :default => 'Delete this file'), :confirm => t('.delete_file.confirm', :default => "The file \"%{name}\" will be deleted!\nAre you sure?", :name => myfile.filename) }
           %td
             - if myfile.indexed
-              = link_to image_tag('zoom.png'), { :controller => 'file', :action => 'preview', :id => myfile }, { :title => 'Preview', :class => 'noBackground' }
+              = link_to image_tag('zoom.png'), { :controller => 'file', :action => 'preview', :id => myfile }, { :title => t('.preview_file.title', :default => 'Preview'), :class => 'noBackground' }
 
 - reset_cycle
 - if @logged_in_user.is_admin?
@@ -88,13 +89,13 @@
             %th
             %th
             %th.rights
-              Create
+              = t('.permission.create', :default => 'Create')
             %th.rights
-              Read
+              = t('.permission.read', :default => 'Read')
             %th.rights
-              Update
+              = t('.permission.update', :default => 'Update')
             %th.rights
-              Delete
+              = t('.permission.delete', :default => 'Delete')
           - Group.find(:all, :order => 'name').each do |group|
             %tr{ :class => cycle('even', 'odd') }
               - disabled = group.is_the_administrators_group?
@@ -119,9 +120,9 @@
                 = CRUD_check_box('delete', group.id, controller.folder_id, disabled)
 
         %br
-        = submit_tag 'Save'
+        = submit_tag t('.save', :default=> 'Save')
         = check_box('update_recursively', 'checked', {}, 'yes', 'no')
-        Apply changes to subfolders
+        = t('.apply_changes_to_subfolders',:default => 'Apply changes to subfolders')
 
 - content_for :actionlinks do
   = render :partial => "actionlinks"

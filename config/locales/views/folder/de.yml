@@ -1,0 +1,32 @@
+de:
+  folder:
+    list:
+      permissions: Rechte
+      back_to_folder: Zurück zum Ordner
+
+      name: Name
+      size: Größe
+      date_modified: Änderungsdatum
+
+      rename_folder:
+        title: Diesen Ordner umbenennen
+      delete_folder:
+        title: Diesen Ordner löschen
+        confirm: "Alle Dateien und Unterordner werden gelöscht!\nSind Sie sicher?"
+
+      rename_file:
+        title: Diese Datei umbenennen
+      delete_file:
+        title: Diese Datei löschen
+        confirm: "Die Datei \"%{name}\" wird gelöscht!\nSind Sie sicher?"
+      preview_file:
+        title: Voransicht
+
+      permission:
+        create: Anlegen
+        read: Lesen
+        update: Ändern
+        delete: Löschen
+
+      save: Speichern
+      apply_changes_to_subfolders: Änderungen auch auf Unterordner anwenden

@@ -54,12 +54,6 @@ class FolderController < ApplicationController
 
     # List of files in the folder
     @myfiles = @folder.list_files(@logged_in_user, file_order.rstrip)
-
-    #get the correct URL
-    url = url_for(:controller => 'folder', :action => 'list', :id => nil)
-
-    # it's nice to have the possibility to go up one level
-    @folder_up = '<a href="' + url + '/' + @folder.parent.id.to_s + '">..</a>' if @folder.parent
   end
 
   # Authorizes, sets the appropriate variables and headers.
