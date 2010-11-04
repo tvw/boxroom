@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
+  before_filter :set_locale
   before_filter :authorize # user should be logged in
 
   # Returns the id of the current folder, which is used by the
@@ -87,6 +88,14 @@ class ApplicationController < ActionController::Base
     unless @logged_in_user.can_delete(folder_id)
       flash.now[:error] = "You don't have delete permissions for this folder."
       redirect_to :controller => 'folder', :action => 'list', :id => folder_id and return false
+    end
+  end
+
+
+  protected
+  def set_locale
+    if request.env.has_key?('HTTP_ACCEPT_LANGUAGE')
+      I18n.locale = request.env['HTTP_ACCEPT_LANGUAGE'].split(',')[0].split('-')[0]
     end
   end
 end
