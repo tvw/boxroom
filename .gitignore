@@ -11,3 +11,4 @@ uploads/
 boxroom/
 testfiles/
 public/stylesheets/boxroom.css
+config/database.yml
