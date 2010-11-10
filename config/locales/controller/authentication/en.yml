@@ -1,0 +1,4 @@
+en:
+  authentication_controller:
+    login:
+      error: "Invalid username/password combination."

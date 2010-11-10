@@ -18,7 +18,7 @@ en:
         title: Rename this file
       delete_file:
         title: Delete this file
-        confirm: "The file \"%{name}\" will be deleted!\nAre you sure?"
+        confirm: "The file \"{{name}}\" will be deleted!\nAre you sure?"
       preview_file:
         title: preview
 

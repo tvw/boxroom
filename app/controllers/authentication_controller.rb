@@ -22,7 +22,7 @@ class AuthenticationController < ApplicationController
         session[:jumpto] = nil
         redirect_to(jumpto)
       else
-        flash.now[:error] = 'Invalid username/password combination'
+        flash.now[:error] = t("authentication_controller.login.error", :default => "Invalid username/password combination")
       end
     end
   end
@@ -62,7 +62,7 @@ class AuthenticationController < ApplicationController
   def forgot_password
     if request.post?
       # Try to generate and mail a new password
-      result = User.generate_and_mail_new_password(params[:user][:name], params[:user][:email])
+      result = User.generate_and_mail_new_password(params[:user][:name], params[:user][:email], login_url)
 
       # Act according to the result
       if result['flash'] == 'forgotten_notice'

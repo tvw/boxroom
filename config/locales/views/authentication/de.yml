@@ -1,0 +1,35 @@
+de:
+  authentication:
+
+    login:
+      title: Login
+      form:
+        username: "Benutzername:"
+        password: "Passwort:"
+        submit: einloggen
+      forgot_password: Ich habe mein Passwort vergessen
+
+    forgot_password:
+      title: Passwort vergessen
+      instruction:
+        title: "So bekommen Sie ein neues Passwort:"
+        inst1: Geben Sie den Benutzernamen und/oder die E-Mail-Adresse ein
+        inst2: "Klicken Sie auf 'Neues Passwort zusenden'"
+        inst3: Schauen Sie in Ihr Postfach nach der E-Mail mit dem neuen Passwort
+      form:
+        username: "Benutzername:"
+        email: "E-Mail:"
+        submit: Neues Passwort zusenden
+      back_to_login: Zurück zum Login
+
+    create_admin:
+      title: Administrator anlegen
+      instruction:
+        title: Boxroom hat noch keinen Administrator
+        inst1: "Legen Sie ihn hier an:"
+      form:
+        username: "Benutzername:"
+        email: "E-Mail:"
+        password: "Passwort:"
+        password_confirmation: "Passwort wiederholen:"
+        submit: Administratorkonto anlegen

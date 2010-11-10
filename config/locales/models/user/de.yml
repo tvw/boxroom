@@ -1,0 +1,25 @@
+de:
+  models:
+    user:
+      no_user_and_email: "Es konnte kein Benutzer mit dieser Kombination aus Benutzername und E-Mail-Adresse gefunden werden"
+      no_user: "Es konnte keine Benutzer mit diesem Benutzernamen gefunden werden"
+      no_email: "Es konnte kein Benutzer mit dieser E-Mail-Adresse gefunden werden"
+      pls_enter: "Geben Sie bitte einen Benutzernamen und/oder eine E-Mail-Adresse ein"
+      sent_mail: "Ein neues Passwort wurde an {{email}} geschickt"
+      no_new_password: "Es konnte kein neues Passwort angelegt werden"
+      mailer_error1: "The mail server settings in the environment file are incorrect.
+                      Check the installation instructions to solve this problem.
+                      Your password hasn't changed yet."
+      mailer_error2: "{{msg}}.<br/><br/>This means either your e-mail address or Boxroom's configuration
+                      for e-mailing is invalid. Please contact the administrator or check the installation
+                      instructions. Your password hasn't changed yet."
+
+  activerecord:
+    models:
+      user: User
+    attributes:
+      user:
+        name: Username
+        email: E-mail
+        hashed_password: Hashed password
+        is_the_administrator: is the administrator

@@ -1,0 +1,40 @@
+de:
+  user:
+
+    edit:
+      title: Benutzer ändern
+      links:
+        back: Zurück
+      form:
+        submit: Speichern
+
+    new:
+      title: Neuen Benutzer anlegen
+      links:
+        back: Zurück
+      form:
+        submit: Anlegen
+
+    list:
+      title: Benutzer
+      headers:
+        name: Benutzername
+        email: E-Mail
+      links:
+        edit_user: "Diesen Benutzer bearbeiten"
+      delete_user:
+        title: Diesen Benutzer löschen
+        confirm: "Benutzer \"{{name}}\" wird gelöscht!\nSind Sie sicher?"
+
+    form:
+      username: Benutzername
+      email: E-Mail
+      new_password: Neues Passwort
+      password: Passwort
+      confirm_new_password: Wiederholung des neuen Passworts
+      confirm_password: Wiederholung password
+      groups: Gruppenmitgliedschaft
+
+    actionlinks:
+      create_user: Benutzer anlegen
+

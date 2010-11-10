@@ -39,7 +39,7 @@ class UserController < ApplicationController
       if @user.save
         begin
           # send an e-mail to the new user; informing him about his account
-          PasswordMailer.deliver_new_user(@user.name, @user.email, params[:user][:password])
+          PasswordMailer.deliver_new_user(@user.name, @user.email, params[:user][:password], login_url)
           flash[:notice] = "The new user's account information has been e-mailed to " + @user.email
           redirect_to :action => 'list'
         rescue Exception => e

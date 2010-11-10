@@ -1,0 +1,39 @@
+en:
+  user:
+
+    edit:
+      title: Edit user
+      links:
+        back: Back
+      form:
+        submit: Save
+
+    new:
+      title: New user
+      links:
+        back: Back
+      form:
+        submit: Create
+
+    list:
+      title: Users
+      headers:
+        name: Name
+        email: E-mail address
+      links:
+        edit_user: "Edit this user's settings"
+      delete_user:
+        title: Delete this user
+        confirm: "User \"{{name}}\" will be deleted!\nAre you sure?"
+
+    form:
+      username: Username
+      email: E-mail address
+      new_password: New password
+      password: Password
+      confirm_new_password: Confirm new password
+      confirm_password: Confirm password
+      groups: Member of these groups
+
+    actionlinks:
+      create_user: Create user

@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   def validate
     # Only validate the presence of a password when it's required
     if self.password_required and self.password.blank?
-      errors.add(:password, " can't be blank")
+      errors.add(:password, I18n.t(:blank))
     end
   end
 
@@ -111,7 +111,7 @@ class User < ActiveRecord::Base
   # Generates a new password for the user with the given username
   # and/or password and mails the password to the user.
   # Returns an appriopriate error message if the given user does not exists.
-  def self.generate_and_mail_new_password(name, email)
+  def self.generate_and_mail_new_password(name, email, url)
     # This is the hash that will be returned
     result = Hash.new
 
@@ -120,26 +120,26 @@ class User < ActiveRecord::Base
       user = self.find_by_name_and_email(name, email)
       if user.blank?
         result['flash'] = 'forgotten_notice'
-        result['message'] = 'Could not find a user with this combination of username and e-mail address'
+        result['message'] = I18n.t("models.user.no_user_and_email", :default => "Could not find a user with this combination of username and e-mail address")
         return result
       end
     elsif not name.blank? # The user only entered the name
       user = self.find_by_name(name)
       if user.blank?
         result['flash'] = 'forgotten_notice'
-        result['message'] = 'Could not find a user with this username'
+        result['message'] = I18n.t("models.user.no_user", :default => 'Could not find a user with this username')
         return result
       end
     elsif not email.blank? # The user only entered an e-mail address
       user = User.find_by_email(email)
       if user.blank?
         result['flash'] = 'forgotten_notice'
-        result['message'] = 'Could not find a user with this e-mail address'
+        result['message'] = I18n.t("models.user.no_email", :default => 'Could not find a user with this e-mail address')
         return result
       end
     else # The user didn't enter anything
       result['flash'] = 'forgotten_notice'
-      result['message'] = 'Please enter a username and/or an e-mail address'
+      result['message'] = I18n.t("models.user.pls_enter", :default => 'Please enter a username and/or an e-mail address')
       return result
     end
 
@@ -150,20 +150,20 @@ class User < ActiveRecord::Base
 
     # Store the new password and try to mail it to the user
     begin
-      if PasswordMailer.deliver_forgotten(user.name, user.email, new_password) and user.save
+      if PasswordMailer.deliver_forgotten(user.name, user.email, new_password, url) and user.save
         result['flash'] = 'login_confirmation'
-        result['message'] = 'A new password has been e-mailed to ' + user.email
+        result['message'] = I18n.t("models.user.sent_mail", :default => "A new password has been e-mailed to {{email}}", :email => user.email)
       else
         result['flash'] = 'forgotten_notice'
-        result['message'] = 'Could not create a new password'
+        result['message'] = I18n.t("models.user.no_new_password", :default => "Could not create a new password")
       end
     rescue Exception => e
       if e.message.match('getaddrinfo: No address associated with nodename')
         result['flash'] = 'forgotten_notice'
-        result['message'] = "The mail server settings in the environment file are incorrect. Check the installation instructions to solve this problem. Your password hasn't changed yet."
+        result['message'] = I18n.t("models.user.mailer_error1", :default => "The mail server settings in the environment file are incorrect. Check the installation instructions to solve this problem. Your password hasn't changed yet.")
       else
         result['flash'] = 'forgotten_notice'
-        result['message'] = e.message + ".<br /><br />This means either your e-mail address or Boxroom's configuration for e-mailing is invalid. Please contact the administrator or check the installation instructions. Your password hasn't changed yet."
+        result['message'] =  I18n.t("models.user.mailer_error2", :default => "{{msg}}.<br /><br />This means either your e-mail address or Boxroom's configuration for e-mailing is invalid. Please contact the administrator or check the installation instructions. Your password hasn't changed yet.", :msg => e.message)
       end
     end
 

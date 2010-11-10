@@ -12,3 +12,9 @@ boxroom/
 testfiles/
 public/stylesheets/boxroom.css
 config/database.yml
+
+/.bundle
+/.rvmrc
+/INSTALL
+/file100M
+/group

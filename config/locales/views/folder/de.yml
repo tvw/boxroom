@@ -18,7 +18,7 @@ de:
         title: Diese Datei umbenennen
       delete_file:
         title: Diese Datei löschen
-        confirm: "Die Datei \"%{name}\" wird gelöscht!\nSind Sie sicher?"
+        confirm: "Die Datei \"{{name}}\" wird gelöscht!\nSind Sie sicher?"
       preview_file:
         title: Voransicht
 

@@ -1,4 +1,5 @@
-- form_tag( { :controller => 'search', :action => 'show_results' }, { :style => 'display:inline;' } ) do
-  = text_field 'search', 'query', { :class => 'searchField', :value => @search_query, :size => nil }
-  = submit_tag 'Find!', { :class => 'searchBtn' }
+- if Boxroom.config.use_search?
+  - form_tag( { :controller => 'search', :action => 'show_results' }, { :style => 'display:inline;' } ) do
+    = text_field 'search', 'query', { :class => 'searchField', :value => @search_query, :size => nil }
+    = submit_tag t(".submit", :default => 'Find!'), { :class => 'searchBtn' }
 

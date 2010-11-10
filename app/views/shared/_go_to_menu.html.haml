@@ -1,17 +1,17 @@
 - if params[:controller] == 'folder' or params[:controller] == 'file'
-  = link_to 'Folders', { :controller => 'folder', :action => 'list', :id => nil }, { :class => 'activeLink' }
+  = link_to link_to t(".folders", :default => 'Folders'), { :controller => 'folder', :action => 'list', :id => nil }, { :class => 'activeLink' }
 - else
-  = link_to 'Folders', { :controller => 'folder', :action => 'list', :id => nil }
+  = link_to link_to t(".folders", :default => 'Folders'), { :controller => 'folder', :action => 'list', :id => nil }
 
 - if @logged_in_user.is_admin?
   - if params[:controller] == 'user'
-    = link_to 'Users', { :controller => 'user', :action => 'list' }, { :class => 'activeLink' }
+    = link_to t(".users", :default => 'Users'), { :controller => 'user', :action => 'list' }, { :class => 'activeLink' }
   - else
-    = link_to 'Users', { :controller => 'user', :action => 'list' }
+    = link_to t(".users", :default => 'Users'), { :controller => 'user', :action => 'list' }
 
   - if params[:controller] == 'group'
-    = link_to 'Groups', { :controller => 'group', :action => 'list' }, { :class => 'activeLink' }
+    = link_to t(".groups", :default => 'Groups'), { :controller => 'group', :action => 'list' }, { :class => 'activeLink' }
   - else
-    = link_to 'Groups', { :controller => 'group', :action => 'list' }
+    = link_to t(".groups", :default => 'Groups'), { :controller => 'group', :action => 'list' }
 
 

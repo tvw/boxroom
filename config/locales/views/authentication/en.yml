@@ -1,0 +1,35 @@
+en:
+  authentication:
+
+    login:
+      title: Login
+      form:
+        username: "Username:"
+        password: "Password:"
+        submit: Login
+      forgot_password: I forgot my password
+
+    forgot_password:
+      title: Forgot password
+      instruction:
+        title: "To get a new password:"
+        inst1: Enter the username and/or the e-mail address you registered with
+        inst2: "Click 'Give me a new password'"
+        inst3: Check your e-mail for the new password
+      form:
+        username: "Username:"
+        email: "E-mail:"
+        submit: Give me a new password
+      back_to_login: Back to login
+
+    create_admin:
+      title: Create admin
+      instruction:
+        title: Boxroom does not have an administrator yet.
+        inst1: "Create it here:"
+      form:
+        username: "Username:"
+        email: "E-mail:"
+        password: "Password:"
+        password_confirmation: "Confirm password:"
+        submit: Create admin account

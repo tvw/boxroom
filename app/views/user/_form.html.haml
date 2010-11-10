@@ -2,38 +2,47 @@
 /
   [form:user]
 %label{ :for => "user_name" }
-  Username
+  = t(".username", :default => "Username")
 %br
-= text_field 'user', 'name', :style => 'width:220px;'
+- if Boxroom.config.user_may_change_username? or @logged_in_user.is_admin?
+  = text_field 'user', 'name', :style => 'width:220px;'
+- else
+  %b
+    = @logged_in_user.name
 %br
 %br
 %label{ :for => "user_email" }
-  E-mail address
+  = t(".email", :default => "E-mail address")
+  
 %br
-= text_field 'user', 'email', :style => 'width:220px;'
+- if Boxroom.config.user_may_change_email? or @logged_in_user.is_admin?
+  = text_field 'user', 'email', :style => 'width:220px;'
+- else
+  %b
+    = @logged_in_user.email
 %br
 %br
 %label{ :for => "user_password" }
-  - unless controller.action_name == 'new'
-    New password
+  - if controller.action_name == 'new'
+    = t(".password", :default => "Password")
   - else
-    Password
+    = t(".new_password", :default => "New password")
   
 %br
 = password_field 'user', 'password', :style => 'width:220px;'
 %br
 %br
 %label{ :for => "user_password_confirmation" }
-  Confirm
-  - unless controller.action_name == 'new'
-    new
-  password
+  - if controller.action_name == 'new'
+    = t(".password", :default => "Confirm password")
+  - else
+    = t(".new_password", :default => "Confirm new password")
 %br
 = password_field 'user', 'password_confirmation', :style => 'width:220px;'
 %br
 %br
 - if @logged_in_user.is_admin?
-  Member of these groups
+  = t(".groups", :default => "Member of these groups")
   %br
   %table
     %tr

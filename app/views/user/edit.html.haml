@@ -1,12 +1,12 @@
 %p.title
-  Edit user
+  = t(".title", :default => "Edit user")
 
 - form_tag :action => 'update', :id => @user do
   = render :partial=>'form'
-  = submit_tag 'Save'
+  = submit_tag t(".form.submit", :default => "Save")
 
 - if @user != @logged_in_user
-  = link_to 'Back', :action => 'list'
+  = link_to t(".links.back", :default => "Back"), :action => 'list'
 
 - content_for :actionlinks do
   = render :partial => "actionlinks"

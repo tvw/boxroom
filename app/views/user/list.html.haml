@@ -1,13 +1,13 @@
 %p.title
-  Users
+  = t(".title", :default => "Users")
 
 %table
   %tr
     %th
     %th{ :width => "180" }
-      Name
+      = t(".headers.name", :default => "Name")
     %th{ :width => "356" }
-      E-mail address
+      = t(".headers.email", :default => "E-mail address")
     %th
     %th
   - @users.each do |user|
@@ -19,12 +19,12 @@
       %td
         = h(user.email)
       %td
-        = link_to image_tag('edit.png'), { :action => 'edit', :id => user }, { :title => "Edit this user's settings" }
+        = link_to image_tag('edit.png'), { :action => 'edit', :id => user }, { :title => t(".links.edit_user", :default => "Edit this user's settings") }
       - if user.is_the_administrator?
         %td
       - else
         %td
-          = link_to image_tag('delete.png'), { :action => 'destroy', :id => user }, { :title => 'Delete this user', :confirm => 'Are you sure?' }
+          = link_to image_tag('delete.png'), { :action => 'destroy', :id => user }, { :title => t(".delete_user.title", :default => "Delete this user"), :confirm => t(".delete_user.confirm", :default => "User \"{{name}}\" will be deleted!\nAre you sure?", :name => user.name)}
 
 - content_for :actionlinks do
   = render :partial => "actionlinks"

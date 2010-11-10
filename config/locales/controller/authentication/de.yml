@@ -1,0 +1,4 @@
+de:
+  authentication_controller:
+    login:
+      error: "Der Benutzernamen oder das Passwort ist ungültig."

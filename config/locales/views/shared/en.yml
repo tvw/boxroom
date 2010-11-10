@@ -1,0 +1,18 @@
+en:
+  shared:
+
+    create_file_folder:
+      create_folder: Create folder
+      upload_file: Upload file
+
+    go_to_menu:
+      folders: Folders
+      users: Users
+      groups: Groups
+
+    logged_in_user_menu:
+      user_settings: user settings
+      sign_out: sign out
+
+    search_form:
+      submit: "Find!"

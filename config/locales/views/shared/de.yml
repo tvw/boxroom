@@ -1,0 +1,18 @@
+de:
+  shared:
+
+    create_file_folder:
+      create_folder: Ordner anlegen
+      upload_file: Datei hochladen
+
+    go_to_menu:
+      folders: Ordner
+      users: Benutzer
+      groups: Gruppen
+
+    logged_in_user_menu:
+      user_settings: Benutzereinstellungen
+      sign_out: ausloggen
+
+    search_form:
+      submit: "Finde!"

@@ -1,17 +1,17 @@
 %p.title
-  Login
+  = t(".title", :default => "Login")
 
 - form_tag do
-  Username:
+  = t(".form.username", :default => "Username:")
   %br
   = text_field 'user', 'name', :style => 'width:220px;'
   %br
   %br
-  Password:
+  = t(".form.password", :default => "Password:")
   %br
   = password_field 'login', 'password', :style => 'width:220px;'
   %br
   %br
-  = submit_tag 'Login'
+  = submit_tag t(".form.submit", :default => "Login")
 
-= link_to 'I forgot my password', :action => 'forgot_password'
+= link_to t(".forgot_password", :default => "I forgot my password"), :action => 'forgot_password'
