@@ -1,0 +1,6 @@
+en:
+  password_mailer:
+    new_user:
+      subject: 'Your Boxroom password'
+    forgotten:
+      subject: 'Your Boxroom password'
