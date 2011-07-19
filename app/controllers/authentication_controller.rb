@@ -34,7 +34,6 @@ class AuthenticationController < ApplicationController
   # Create the Root folder
   # Give the admins group CRUD rights to the Root folder.
   # The newly created admin user will be logged in automatically.
-  # Initialize the Ferret index.
   def create_admin
     # Check if there already is an admin
     redirect_to(:action => 'login') and return false if User.admin_exists?
@@ -52,9 +51,6 @@ class AuthenticationController < ApplicationController
         redirect_to(:action => 'list', :controller => 'folder')
       end
 
-      # Create the initial Ferret index for files
-      # (note: The index for Folders was created when we created the Root folder)
-      Myfile.rebuild_index
     end
   end
 

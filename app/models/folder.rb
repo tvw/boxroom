@@ -2,7 +2,6 @@
 # Folders can also have sub-folders.
 # Via groups it is determined which actions the logged-in User can perform.
 class Folder < ActiveRecord::Base
-  acts_as_ferret :store_class_name => true, :fields => { :name => { :store => :no } }
   acts_as_tree :order => 'name'
 
   belongs_to :user

@@ -7,6 +7,7 @@ class SearchController < ApplicationController
     if request.post?
       @search_query = params[:search][:query]
       @result = [] # array to hold the results
+      return
 
       # Search with Ferret in both Folder (name)
       # and Myfile (filename and text)

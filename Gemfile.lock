@@ -11,9 +11,6 @@ GEM
     activeresource (2.3.5)
       activesupport (= 2.3.5)
     activesupport (2.3.5)
-    acts_as_ferret (0.4.4)
-    ferret (0.11.6)
-      rake (> 0.0.0)
     haml (3.0.12)
     i18n_action_mailer (0.2.2)
     mysql (2.8.1)
@@ -31,8 +28,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  acts_as_ferret
-  ferret
   haml (= 3.0.12)
   i18n_action_mailer (= 0.2.2)
   mysql (= 2.8.1)
