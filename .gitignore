@@ -17,4 +17,5 @@ config/database.yml
 /.rvmrc
 /INSTALL
 /file100M
+/file10M
 /group
