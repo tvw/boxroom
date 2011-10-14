@@ -39,6 +39,11 @@ class Folder < ActiveRecord::Base
     return files
   end
 
+  def list_users_who_can_read
+    User.find(:all).select{|user| user.can_read(self.id)}
+  end
+
+
   # Returns whether or not the root folder exists
   def self.root_folder_exists?
     folder = Folder.find_by_is_root(true)

@@ -124,5 +124,27 @@
         = check_box('update_recursively', 'checked', {}, 'yes', 'no')
         = t('.apply_changes_to_subfolders',:default => 'Apply changes to subfolders')
 
+    %p.subtitle
+      = t('.users_who_can_read', :default => 'Users, who can read the folder:')
+      
+    %table
+      %tr
+        %th
+        %th{ :width => "180" }
+          = t(".headers.name", :default => "Name")
+        %th{ :width => "356" }
+          = t(".headers.email", :default => "E-mail address")
+
+      - @users_who_can_read.each do |user|
+        %tr{ :class => cycle('even', 'odd') }
+          %td
+            = link_to image_tag('user.png'), {:controller => 'user', :action => 'edit', :id => user }, { :title => t(".links.edit_user", :default => "Edit this user's settings") }
+          %td
+            = h(user.name)
+          %td
+            = h(user.email)
+
+
+
 - content_for :actionlinks do
   = render :partial => "actionlinks"

@@ -54,6 +54,9 @@ class FolderController < ApplicationController
 
     # List of files in the folder
     @myfiles = @folder.list_files(@logged_in_user, file_order.rstrip)
+
+    # List of users who can read the folder
+    @users_who_can_read = @folder.list_users_who_can_read()
   end
 
   # Authorizes, sets the appropriate variables and headers.

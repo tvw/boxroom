@@ -28,5 +28,7 @@ de:
         update: Ändern
         delete: Löschen
 
+      users_who_can_read: "Benutzer, die den Ordner lesen können:"
+        
       save: Speichern
       apply_changes_to_subfolders: Änderungen auch auf Unterordner anwenden

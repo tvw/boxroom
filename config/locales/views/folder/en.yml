@@ -28,5 +28,7 @@ en:
         update: Update
         delete: Delete
 
+      users_who_can_read: "Users, who can read the folder:"
+
       save: Save
       apply_changes_to_subfolders: Apply changes to subfolders
