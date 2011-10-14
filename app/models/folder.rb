@@ -39,10 +39,24 @@ class Folder < ActiveRecord::Base
     return files
   end
 
+  # List of users who can read the folder
   def list_users_who_can_read
     User.find(:all).select{|user| user.can_read(self.id)}
   end
 
+  # Folders readable by user
+  def self.folders_readable_by_user(user, root_folder = Folder.find_by_is_root(true))
+    Folder.find(:all).select{|f| user.can_read(f.id)}.sort{|a,b| a.path <=> b.path }
+  end
+
+  # The path of the folder
+  def path
+    if is_root?
+      name
+    else
+      [parent.path, name].join("/")
+    end
+  end
 
   # Returns whether or not the root folder exists
   def self.root_folder_exists?

@@ -3,6 +3,9 @@ en:
 
     edit:
       title: Edit user
+      folders_readable_by_user: "Folders, the user can read:"
+      headers:
+        path: Path
       links:
         back: Back
       form:

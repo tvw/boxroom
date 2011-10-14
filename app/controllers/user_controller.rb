@@ -58,6 +58,8 @@ class UserController < ApplicationController
 
   # Show a form in which the data of a user can be edited.
   def edit
+    @folders_readable_by_user = []
+    @folders_readable_by_user = Folder.folders_readable_by_user(@user) if @logged_in_user.is_admin?
     render
   end
 

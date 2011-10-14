@@ -3,6 +3,9 @@ de:
 
     edit:
       title: Benutzer ändern
+      folders_readable_by_user: "Ordner, die der Benutzer lesen kann:"
+      headers:
+        path: Pfad
       links:
         back: Zurück
       form:

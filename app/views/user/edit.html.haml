@@ -5,6 +5,26 @@
   = render :partial=>'form'
   = submit_tag t(".form.submit", :default => "Save")
 
+- if @logged_in_user.is_admin?
+
+  %p.subtitle
+    
+    = t(".folders_readable_by_user", :default => "Folders, the user can read:")
+
+  %table
+    %tr
+      %th
+      %th{ :width => "536" }
+        = t(".headers.path", :default => "Path")
+
+    - @folders_readable_by_user.each do |folder|
+      %tr{ :class => cycle('even', 'odd') }
+        %td
+          = link_to image_tag('folder.png'), :controller => 'folder', :action => 'list', :id => folder
+        %td
+          = h(folder.path)
+
+
 - if @user != @logged_in_user
   = link_to t(".links.back", :default => "Back"), :action => 'list'
 
