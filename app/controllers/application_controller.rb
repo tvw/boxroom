@@ -95,7 +95,8 @@ class ApplicationController < ActionController::Base
   protected
   def set_locale
     if request.env.has_key?('HTTP_ACCEPT_LANGUAGE')
-      I18n.locale = request.env['HTTP_ACCEPT_LANGUAGE'].split(',')[0].split('-')[0]
+      loc = request.env['HTTP_ACCEPT_LANGUAGE'].split(',')[0].split('-')[0]
+      I18n.locale = (['de','en'].include?(loc)) ? loc : 'en'
     end
   end
 end
