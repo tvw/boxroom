@@ -7,5 +7,25 @@
 
 = link_to 'Back', :action => 'list'
 
+%p
+  Users assigned to this group:
+
+%table
+  %tr
+    %th
+    %th{ :width => "180" }
+      = t(".headers.name", :default => "Name")
+    %th{ :width => "356" }
+      = t(".headers.email", :default => "E-mail address")
+
+  - @group.users.each do |user|
+    %tr{ :class => cycle('even', 'odd') }
+      %td
+        = link_to image_tag('user.png'), {:controller => 'user', :action => 'edit', :id => user }, { :title => t(".links.edit_user", :default => "Edit this user's settings") }
+      %td
+        = h(user.name)
+      %td
+        = h(user.email)
+
 - content_for :actionlinks do
   = render :partial => "actionlinks"
