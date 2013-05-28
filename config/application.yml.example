@@ -1,0 +1,11 @@
+defaults: &defaults
+  xsendfile: true
+
+test:
+  <<: *defaults
+
+development:
+  <<: *defaults
+
+production:
+  <<: *defaults

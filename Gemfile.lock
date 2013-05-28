@@ -23,6 +23,7 @@ GEM
       activesupport (= 2.3.18)
       rake (>= 0.8.3)
     rake (10.0.4)
+    settingslogic (2.0.9)
 
 PLATFORMS
   ruby
@@ -32,3 +33,4 @@ DEPENDENCIES
   i18n_action_mailer (= 0.2.2)
   mysql (= 2.8.1)
   rails (= 2.3.18)
+  settingslogic

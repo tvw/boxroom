@@ -31,7 +31,10 @@ class FileController < ApplicationController
     usage.myfile = @myfile
 
     if usage.save
-      send_file @myfile.path, :filename => @myfile.filename
+      send_opts = { :filename => @myfile.filename }
+      send_opts[:x_sendfile] = true if Settings.xsendfile
+      
+      send_file @myfile.path, send_opts
     end
   end
 

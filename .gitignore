@@ -11,6 +11,7 @@ uploads/
 boxroom/
 testfiles/
 public/stylesheets/boxroom.css
+config/application.yml
 config/database.yml
 
 /.bundle
