@@ -41,7 +41,7 @@ class Folder < ActiveRecord::Base
 
   # List of users who can read the folder
   def list_users_who_can_read
-    User.find(:all).select{|user| user.can_read(self.id)}
+    User.find(:all, :order => "name").select{|user| user.can_read(self.id)}
   end
 
   # Folders readable by user
