@@ -1,0 +1,20 @@
+de:
+  activity:
+    
+    categories:
+      auth: Authentifizierung
+
+    descriptions:
+      auth:
+        login: eingeloggt
+        logout: ausgeloggt
+    
+    list:
+      title: Activitäten
+      headers:
+        id: ID
+        time: Zeit
+        user: Benutzer
+        category: Kategorie
+        object: Object
+        description: Beschreibung

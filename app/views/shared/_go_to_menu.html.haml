@@ -14,4 +14,9 @@
   - else
     = link_to t(".groups", :default => 'Groups'), { :controller => 'group', :action => 'list' }
 
+  - if params[:controller] == 'activity'
+    = link_to t(".activities", :default => 'Activities'), { :controller => 'activity', :action => 'list' }, { :class => 'activeLink' }
+  - else
+    = link_to t(".activities", :default => 'Activities'), { :controller => 'activity', :action => 'list' }
+
 

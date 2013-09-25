@@ -9,7 +9,8 @@ en:
       folders: Folders
       users: Users
       groups: Groups
-
+      activities: Activities
+      
     logged_in_user_menu:
       user_settings: user settings
       sign_out: sign out

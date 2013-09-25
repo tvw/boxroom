@@ -9,6 +9,7 @@ de:
       folders: Ordner
       users: Benutzer
       groups: Gruppen
+      activities: Aktivitäten
 
     logged_in_user_menu:
       user_settings: Benutzereinstellungen

@@ -1,0 +1,31 @@
+%p.title
+  = t(".title", :default => "Activities")
+
+%table
+  %tr
+    %th{:style => "text-align: center;"}
+      = t(".headers.id", :default => "ID")
+    %th
+      = t(".headers.time", :default => "Time")
+    %th
+    %th{ :width => "180" }
+      = t(".headers.user", :default => "User")
+    %th{ :width => "90" }
+      = t(".headers.category", :default => "Category")
+    %th
+    %th{ :width => "180" }
+      = t(".headers.object", :default => "Object")
+    %th{ :width => "356" }
+      = t(".headers.description", :default => "Description")
+
+  - @activities.each do |activity|
+    %tr{ :class => cycle('even', 'odd') }
+      %td{:style => "text-align: center;"}
+        = activity.id
+      %td= l(activity.created_at, :format => :timestamp)
+      %td= user_icon(activity.user) if activity.user
+      %td= h(activity.user.name) if activity.user
+      %td= category(activity) 
+      %td
+      %td
+      %td= description(activity)
