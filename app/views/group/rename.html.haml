@@ -21,7 +21,7 @@
   - @group.users.each do |user|
     %tr{ :class => cycle('even', 'odd') }
       %td
-        = link_to image_tag('user.png'), {:controller => 'user', :action => 'edit', :id => user }, { :title => t(".links.edit_user", :default => "Edit this user's settings") }
+        = link_to user_icon(user), {:controller => 'user', :action => 'edit', :id => user }, { :title => t(".links.edit_user", :default => "Edit this user's settings") }
       %td
         = h(user.name)
       %td

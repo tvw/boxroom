@@ -13,7 +13,7 @@
   - @users.each do |user|
     %tr{ :class => cycle('even', 'odd') }
       %td
-        = image_tag('user.png')
+        = user_icon(user)
       %td
         = h(user.name)
       %td

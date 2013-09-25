@@ -1,5 +1,12 @@
 # Global helper methods for views
 module ApplicationHelper
+  
+  # Returns the icon as an image_tag for the user.
+  def user_icon(user)
+    return image_tag('user_admin.png') if user.is_admin?
+    image_tag('user.png')
+  end
+  
   # Replace 'name' with 'username' in a message
   def name_to_username(msg)
     return msg.sub('Name', 'Username') if msg
