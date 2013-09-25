@@ -13,6 +13,7 @@ GEM
     activesupport (2.3.18)
     haml (3.0.12)
     i18n_action_mailer (0.2.2)
+    json (1.8.0)
     mysql (2.8.1)
     rack (1.1.6)
     rails (2.3.18)
@@ -23,6 +24,8 @@ GEM
       activesupport (= 2.3.18)
       rake (>= 0.8.3)
     rake (10.0.4)
+    rdoc (4.0.1)
+      json (~> 1.4)
     settingslogic (2.0.9)
 
 PLATFORMS
@@ -33,4 +36,5 @@ DEPENDENCIES
   i18n_action_mailer (= 0.2.2)
   mysql (= 2.8.1)
   rails (= 2.3.18)
+  rdoc
   settingslogic
