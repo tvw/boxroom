@@ -9,7 +9,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 5) do
+ActiveRecord::Schema.define(:version => 6) do
+
+  create_table "activities", :force => true do |t|
+    t.string   "category",    :null => false
+    t.integer  "user_id"
+    t.integer  "object_id"
+    t.string   "object_type"
+    t.string   "description", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "activities", ["category"], :name => "index_activities_on_category"
+  add_index "activities", ["object_id", "object_type"], :name => "index_activities_on_object_id_and_object_type"
+  add_index "activities", ["user_id"], :name => "index_activities_on_user_id"
 
   create_table "folders", :force => true do |t|
     t.string   "name"

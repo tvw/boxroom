@@ -4,7 +4,7 @@
 # [#forgot_password] Generate and mail a new password
 # [#logout]          Logs out the current user (clears session)
 class AuthenticationController < ApplicationController
-  skip_before_filter :authorize
+  skip_before_filter :authorize, :only => [:login, :create_admin, :forgot_password]
 
   # Display the login form and wait for user to enter a name and password.
   # We then validate these, adding the user object to the session if they authorize.
@@ -20,6 +20,7 @@ class AuthenticationController < ApplicationController
         session[:user_id] = logged_in_user.id
         jumpto = session[:jumpto] || { :action => 'list', :controller => 'folder' }
         session[:jumpto] = nil
+        Activity.login(logged_in_user)
         redirect_to(jumpto)
       else
         flash.now[:error] = t("authentication_controller.login.error", :default => "Invalid username/password combination")
@@ -73,6 +74,7 @@ class AuthenticationController < ApplicationController
   # Clear the current session and redirect to the login form.
   def logout
     reset_session
+    Activity.logout(@logged_in_user)
     @logged_in_user = nil
     redirect_to :action => 'login'
   end
