@@ -23,6 +23,7 @@ class AuthenticationController < ApplicationController
         Activity.login(logged_in_user)
         redirect_to(jumpto)
       else
+        Activity.failed_login(params[:user][:name])
         flash.now[:error] = t("authentication_controller.login.error", :default => "Invalid username/password combination")
       end
     end
@@ -48,6 +49,7 @@ class AuthenticationController < ApplicationController
         Group.create_admins_group
         Folder.create_root_folder
         GroupPermission.create_initial_permissions
+        Activity.create_admin(@user)
         session[:user_id] = @user.id # Login
         redirect_to(:action => 'list', :controller => 'folder')
       end
@@ -63,9 +65,11 @@ class AuthenticationController < ApplicationController
 
       # Act according to the result
       if result['flash'] == 'forgotten_notice'
+        Activity.sent_new_password_failed(params[:user][:name], params[:user][:email])
         flash.now[:warning] = result['message']
       else
         flash[:notice] = result['message']
+        Activity.sent_new_password(params[:user][:name], params[:user][:email])
         redirect_to(:action => 'login')
       end
     end

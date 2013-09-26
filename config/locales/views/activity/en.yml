@@ -6,9 +6,14 @@ en:
     
     descriptions:
       auth:
-        login: Login
-        logout: Logout
-    
+        login: "{{user_name}} ({{user_email}}) logged in"
+        logout: "{{user_name}} ({{user_email}}) logged out"
+        failed_login: "login failed for {{user_name}}"
+        sent_new_password:
+          success: "New password sent for {{user_name}} ({{user_email}})"
+          failed: "New password could not be sent for unknown user {{user_name}}
+                   ({{user_email}})"
+
     list:
       title: Activities
       headers:

@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(:version => 6) do
     t.integer  "object_id"
     t.string   "object_type"
     t.string   "description", :null => false
+    t.string   "params"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

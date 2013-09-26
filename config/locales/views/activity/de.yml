@@ -6,9 +6,14 @@ de:
 
     descriptions:
       auth:
-        login: eingeloggt
-        logout: ausgeloggt
-    
+        login: "{{user_name}} ({{user_email}}) hat sich eingeloggt"
+        logout: "{{user_name}} ({{user_email}}) hat sich ausgeloggt"
+        failed_login: "Fehlerhafter Loginversuch für {{user_name}}"
+        sent_new_password:
+          success: "Neues Passwort für {{user_name}} ({{user_email}}) verschickt"
+          failed: "Neues Passwort konnte für unbekannten Benutzer {{user_name}}
+                   ({{user_email}}) nicht verschickt werden"
+
     list:
       title: Activitäten
       headers:

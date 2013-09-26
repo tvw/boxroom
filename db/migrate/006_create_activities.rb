@@ -6,6 +6,7 @@ class CreateActivities < ActiveRecord::Migration
       t.integer :object_id,   :null => true
       t.string  :object_type, :null => true,  :length => 100
       t.string  :description, :null => false
+      t.string  :params,      :null => true
 
       t.timestamps
     end

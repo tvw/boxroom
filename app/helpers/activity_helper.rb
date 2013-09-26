@@ -2,7 +2,14 @@ module ActivityHelper
 
   def description(activity)
     tag = "activity.descriptions.#{activity.description}"
-    h(t(tag, :default => activity.description))
+    params = activity.params || {}
+    params[:default] = activity.description + ":" + params.inspect
+
+    begin
+      h(t(tag, params))
+    rescue
+      h(params[:default])
+    end
   end
 
   def category(activity)
