@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   has_many :myfiles, :dependent => :nullify
   has_many :folders, :dependent => :nullify
   has_many :activities
-  has_many :linked_activities, :as => :object, :class_name => :activity
+  has_many :linked_activities, :as => :object, :class_name => "Activity"
 
   # The password_required field, which determines if
   # the presence of a password has to be checked
