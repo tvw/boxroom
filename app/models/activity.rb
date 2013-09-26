@@ -6,12 +6,16 @@ class Activity < ActiveRecord::Base
 
   CATEGORIES = [
                 :auth,
+                :folder,
                ]
 
   serialize :params, Hash
 
+  def object?
+    object.nil?
+  end
   
-  
+  # AuthenticationController
   class << self
     def login(user)
       add(:auth, user, nil,  "auth.login")
@@ -39,7 +43,34 @@ class Activity < ActiveRecord::Base
     def create_admin(user)
       add(:auth, user, nil, "auth.create_admin")
     end
+  end
 
+
+  # FolderController
+  class << self
+    def create_folder(user, folder)
+      add(:folder, user, folder, "folder.create_folder")
+    end
+
+    def rename_folder(user, folder, old_folder_path)
+      add(:folder, user, folder, "folder.rename_folder", {:old_folder_path => old_folder_path})
+    end
+
+    def delete_folder(user, folder)
+      add(:folder, user, folder, "folder.delete_folder")
+    end
+
+    def list_folder(user, folder)
+      add(:folder, user, folder, "folder.list_folder")
+    end
+
+    def update_permissions_folder(user, folder)
+      add(:folder, user, folder, "folder.update_permissions_folder")
+    end
+  end
+
+
+  class << self
     private
 
     def user(id_or_name, email = nil)
@@ -58,6 +89,10 @@ class Activity < ActiveRecord::Base
         params[:user_email] = user.email
       end
       
+      if obj and obj.class == Folder
+        params[:folder_path] = obj.path
+      end
+
       act.category = category.to_s
       act.user_id = user.id if user
       act.description = description

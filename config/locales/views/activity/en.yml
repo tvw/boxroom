@@ -3,6 +3,7 @@ en:
 
     categories:
       auth: Authentication
+      folder: Folder
     
     descriptions:
       auth:
@@ -13,6 +14,14 @@ en:
           success: "New password sent for {{user_name}} ({{user_email}})"
           failed: "New password could not be sent for unknown user {{user_name}}
                    ({{user_email}})"
+      folder:
+        create_folder: "Folder '{{folder_path}}' created by {{user_name}} ({{user_email}})"
+        delete_folder: "Folder '{{folder_path}}' deleted by {{user_name}} ({{user_email}})"
+        rename_folder: "Folder '{{old_folder_path}}' renamed to '{{folder_path}}'
+                        by {{user_name}} ({{user_email}})"
+        list_folder: "Folder '{{folder_path}}' viewed by {{user_name}} ({{user_email}})"
+        update_permissions_folder: "Modified rights for Folder '{{folder_path}}'
+                                    by {{user_name}} ({{user_email}})"
 
     list:
       title: Activities

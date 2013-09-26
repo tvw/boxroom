@@ -57,6 +57,8 @@ class FolderController < ApplicationController
 
     # List of users who can read the folder
     @users_who_can_read = @folder.list_users_who_can_read() if @logged_in_user.is_admin?
+
+    Activity.list_folder(@logged_in_user, @folder)
   end
 
   # Authorizes, sets the appropriate variables and headers.
@@ -115,6 +117,8 @@ class FolderController < ApplicationController
         # copy groups rights on parent folder to new folder
         copy_permissions_to_new_folder(@folder)
 
+        Activity.create_folder(@logged_in_user, @folder)
+
         # back to the list
         redirect_to :action => 'list', :id => params[:id]
       else
@@ -131,7 +135,9 @@ class FolderController < ApplicationController
   # Update the folder attributes with the posted variables from the 'rename' view.
   def update
     if request.post?
+      old_folder_path = @folder.path
       if @folder.update_attributes(:name => params[:folder][:name], :date_modified => Time.now)
+        Activity.rename_folder(@logged_in_user, @folder, old_folder_path)
         redirect_to :action => 'list', :id => folder_id
       else
         render :action => 'rename'
@@ -142,6 +148,7 @@ class FolderController < ApplicationController
   # Delete a folder.
   def destroy
     @folder.destroy
+    Activity.delete_folder(@logged_in_user, @folder)
     redirect_to :action => 'list', :id => folder_id
   end
 
@@ -153,6 +160,7 @@ class FolderController < ApplicationController
       update_group_permissions(folder_id, params[:read_check_box], 'read', params[:update_recursively][:checked] == 'yes' ? true : false)
       update_group_permissions(folder_id, params[:update_check_box], 'update', params[:update_recursively][:checked] == 'yes' ? true : false)
       update_group_permissions(folder_id, params[:delete_check_box], 'delete', params[:update_recursively][:checked] == 'yes' ? true : false)
+      Activity.update_permissions_folder(@logged_in_user, Folder.find(folder_id))
     end
 
     # Return to the folder

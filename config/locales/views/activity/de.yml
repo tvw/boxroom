@@ -3,6 +3,7 @@ de:
     
     categories:
       auth: Authentifizierung
+      folder: Ordner
 
     descriptions:
       auth:
@@ -13,9 +14,17 @@ de:
           success: "Neues Passwort für {{user_name}} ({{user_email}}) verschickt"
           failed: "Neues Passwort konnte für unbekannten Benutzer {{user_name}}
                    ({{user_email}}) nicht verschickt werden"
+      folder:
+        create_folder: "Ordner '{{folder_path}}' von {{user_name}} ({{user_email}}) angelegt"
+        delete_folder: "Ordner '{{folder_path}}' von {{user_name}} ({{user_email}}) gelöscht"
+        rename_folder: "Ordner '{{old_folder_path}}' umbenannt in
+                        '{{folder_path}}' von {{user_name}} ({{user_email}})"
+        list_folder: "Ordner '{{folder_path}}' von {{user_name}} ({{user_email}}) angeschaut"
+        update_permissions_folder: "Rechte für Ordner '{{folder_path}}'
+                                    von {{user_name}} ({{user_email}}) geändert"
 
     list:
-      title: Activitäten
+      title: Aktivitäten
       headers:
         id: ID
         time: Zeit

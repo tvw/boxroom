@@ -7,6 +7,7 @@ class Folder < ActiveRecord::Base
   belongs_to :user
   has_many :myfiles, :dependent => :destroy
   has_many :group_permissions, :dependent => :destroy
+  has_many :linked_activities, :as => :object, :class_name => "Activity"
 
   validates_uniqueness_of :name, :scope => 'parent_id'
   validates_presence_of :name

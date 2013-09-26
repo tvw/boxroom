@@ -26,6 +26,6 @@
       %td= user_icon(activity.user) if activity.user
       %td= h(activity.user.name) if activity.user
       %td= category(activity) 
-      %td
-      %td
+      %td= obj_icon(activity)
+      %td= obj_text(activity)
       %td= description(activity)
