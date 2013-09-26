@@ -35,6 +35,7 @@ class FileController < ApplicationController
       send_opts[:x_sendfile] = true if Settings.xsendfile
       
       send_file @myfile.path, send_opts
+      Activity.download_file(@logged_in_user, @myfile)
     end
   end
 
@@ -71,6 +72,7 @@ class FileController < ApplicationController
     end
 
     if @myfile.save
+      Activity.upload_file(@logged_in_user, @myfile)
       if USE_UPLOAD_PROGRESS
         return_url = url_for(:controller => 'folder', :action => 'list', :id => folder_id)
         render :text => %(<script type="text/javascript">window.parent.UploadProgress.finish('#{return_url}');</script>)
@@ -100,8 +102,10 @@ class FileController < ApplicationController
 
   # Update the name of the file with the new data.
   def update
+    old_file_path = @myfile.fullpath
     if request.post?
       if @myfile.update_attributes(:filename => Myfile.base_part_of(params[:myfile][:filename]), :date_modified => Time.now)
+        Activity.rename_file(@logged_in_user, @myfile, old_file_path)
         redirect_to :controller => 'folder', :action => 'list', :id => folder_id
       else
         render :action => 'rename'
@@ -123,6 +127,7 @@ class FileController < ApplicationController
   # Delete a file.
   def destroy
     @myfile.destroy
+    Activity.delete_file(@logged_in_user, @myfile)
     redirect_to :controller => 'folder', :action => 'list', :id => folder_id
   end
 

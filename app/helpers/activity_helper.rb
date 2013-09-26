@@ -5,8 +5,16 @@ module ActivityHelper
 
     if activity.object_type == "User"
       icon = "user.png"
-    elsif activity.object_type == "File"
-      icon = "file.png"
+    elsif activity.object_type == "Myfile"
+      if activity.object
+        icon = "file.png"
+        icon = "file_download.png" if activity.description == "file.download_file"
+        icon = "file_upload.png" if activity.description == "file.upload_file"
+      else
+        icon = "file_grey.png"
+        icon = "file_download_grey.png" if activity.description == "file.download_file"
+        icon = "file_upload_grey.png" if activity.description == "file.upload_file"
+      end
     elsif activity.object_type == "Folder"
       icon = activity.object ? "folder.png" : "folder_grey.png"
     elsif activity.object_type == "Group"
@@ -24,8 +32,8 @@ module ActivityHelper
 
     if activity.object_type == "User"
       text = "#{obj.name} (#{obj.email})"
-    elsif activity.object_type == "File"
-      text = obj.path
+    elsif activity.object_type == "Myfile"
+      text = activity.object ? obj.fullpath : activity.params[:file_path]
     elsif activity.object_type == "Folder"
       text = activity.object ? obj.path : activity.params[:folder_path]
     elsif activity.object_type == "Group"

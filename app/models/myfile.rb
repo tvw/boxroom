@@ -9,8 +9,14 @@ class Myfile < ActiveRecord::Base
   belongs_to :user
 
   has_many :usages, :dependent => :destroy
+  has_many :linked_activities, :as => :object, :class_name => "Activity"
 
   validates_uniqueness_of :filename, :scope => 'folder_id'
+
+  # Full path of the file: folder path and filename.
+  def fullpath
+    [folder.path, filename].join("/")
+  end
 
   # Validate if the user's data is valid.
   def validate

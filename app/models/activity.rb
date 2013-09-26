@@ -7,6 +7,7 @@ class Activity < ActiveRecord::Base
   CATEGORIES = [
                 :auth,
                 :folder,
+                :file,
                ]
 
   serialize :params, Hash
@@ -70,6 +71,26 @@ class Activity < ActiveRecord::Base
   end
 
 
+  # FileController
+  class << self
+    def download_file(user, file)
+      add(:file, user, file, "file.download_file")
+    end
+
+    def upload_file(user, file)
+      add(:file, user, file, "file.upload_file")
+    end
+
+    def rename_file(user, file, old_file_path)
+      add(:file, user, file, "file.rename_file", {:old_file_path => old_file_path})
+    end
+
+    def delete_file(user, file)
+      add(:file, user, file, "file.delete_file")
+    end
+  end
+
+
   class << self
     private
 
@@ -91,6 +112,10 @@ class Activity < ActiveRecord::Base
       
       if obj and obj.class == Folder
         params[:folder_path] = obj.path
+      end
+
+      if obj and obj.class == Myfile
+        params[:file_path] = obj.fullpath
       end
 
       act.category = category.to_s

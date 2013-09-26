@@ -4,6 +4,7 @@ de:
     categories:
       auth: Authentifizierung
       folder: Ordner
+      file: Datei
 
     descriptions:
       auth:
@@ -22,6 +23,13 @@ de:
         list_folder: "Ordner '{{folder_path}}' von {{user_name}} ({{user_email}}) angeschaut"
         update_permissions_folder: "Rechte für Ordner '{{folder_path}}'
                                     von {{user_name}} ({{user_email}}) geändert"
+
+      file:
+        download_file: "Datei '{{file_path}}' von {{user_name}} ({{user_email}}) heruntergeladen"
+        upload_file: "Datei '{{file_path}}' von {{user_name}} ({{user_email}}) hochgeladen"
+        delete_file: "Datei '{{file_path}}' von {{user_name}} ({{user_email}}) gelöscht"
+        rename_file: "Datei '{{old_file_path}}' umbenannt in
+                        '{{file_path}}' von {{user_name}} ({{user_email}})"
 
     list:
       title: Aktivitäten
