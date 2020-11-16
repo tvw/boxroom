@@ -8,8 +8,7 @@
 - if @logged_in_user.is_admin?
 
   %p.subtitle
-    
-    = t(".folders_readable_by_user", :default => "Folders, the user can read:")
+    = t(".folders_readable_by_user", :default => "Folders, the user <i><b>{{name}} &lt;{{email}}&gt;</b></i> can read:", :name => @user.name, :email => @user.email)
 
   %table
     %tr

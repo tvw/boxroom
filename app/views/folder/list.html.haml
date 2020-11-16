@@ -125,8 +125,8 @@
         = t('.apply_changes_to_subfolders',:default => 'Apply changes to subfolders')
 
     %p.subtitle
-      = t('.users_who_can_read', :default => 'Users, who can read the folder:')
-      
+      = t('.users_who_can_read', :default => 'Users, who can read the folder <i><b>{{path}}</b></i>:', :path => path(@folder, false))
+
     %table
       %tr
         %th

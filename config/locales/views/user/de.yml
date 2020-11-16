@@ -3,7 +3,7 @@ de:
 
     edit:
       title: Benutzer ändern
-      folders_readable_by_user: "Ordner, die der Benutzer lesen kann:"
+      folders_readable_by_user: "Ordner, die der Benutzer <i><b>{{name}} &lt;{{email}}&gt;</b></i> lesen kann:"
       headers:
         path: Pfad
       links:

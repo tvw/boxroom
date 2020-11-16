@@ -3,7 +3,7 @@ en:
 
     edit:
       title: Edit user
-      folders_readable_by_user: "Folders, the user can read:"
+      folders_readable_by_user: "Folders, the user <i><b>{{name}} &lt;{{email}}&gt;</b></i> can read:"
       headers:
         path: Path
       links:
