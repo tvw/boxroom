@@ -25,6 +25,11 @@ module RFC822
     domain = "#{sub_domain}(?:\\x2e#{sub_domain})*"
     local_part = "#{word}(?:\\x2e#{word})*"
     addr_spec = "#{local_part}\\x40#{domain}"
-    pattern = /\A#{addr_spec}\z/
+
+   if RUBY_VERSION >= "1.9"
+     Regexp.new("\\A#{addr_spec}\\z", nil, 'n')
+   else
+     pattern = /\A#{addr_spec}\z/
+   end
   end
 end
